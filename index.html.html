@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Écomobile - Solution de Mobilité Scolaire Sécurisée</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #10b981;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: #334155;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+            color: white;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-img {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 25px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(37, 99, 235, 0.9), rgba(37, 99, 235, 0.8)), url('https://images.unsplash.com/photo-1532634922-8fe0b757fb13?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            font-size: 1.2rem;
+            color: #64748b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        /* Verification Process */
+        .verification {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+        }
+        
+        .verification-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .verification-step {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            line-height: 40px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .pricing-card {
+            background: var(--light);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .pricing-header {
+            padding: 25px;
+            text-align: center;
+            color: white;
+        }
+        
+        .pricing-card:nth-child(1) .pricing-header {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+        
+        .pricing-card:nth-child(2) .pricing-header {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+        
+        .pricing-card:nth-child(3) .pricing-header {
+            background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+        }
+        
+        .pricing-card:nth-child(4) .pricing-header {
+            background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 10px 0;
+        }
+        
+        .pricing-features {
+            padding: 25px;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+        }
+        
+        .pricing-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .pricing-features li i {
+            color: var(--secondary);
+            margin-right: 10px;
+        }
+        
+        .pricing-button {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* App Features */
+        .app-features {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+        }
+        
+        .feature-list {
+            margin-top: 40px;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .feature-item i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-right: 25px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        /* Eco Driving Section */
+        .eco-driving {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .eco-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .eco-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+        
+        .eco-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        /* QR Code Section */
+        .qr-section {
+            padding: 80px 0;
+            background: linear-gradient(to bottom, #f1f5f9, #e2e8f0);
+            text-align: center;
+        }
+        
+        .qr-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 30px;
+        }
+        
+        .qr-code {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .qr-code img {
+            width: 180px;
+            height: 180px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+        
+        .qr-info {
+            max-width: 300px;
+            text-align: left;
+        }
+        
+        /* CTA */
+        .cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #334155;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-item i {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+            
+            .qr-container {
+                flex-direction: column;
+            }
+            
+            .qr-info {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <div class="logo-img">EM</div>
+                <div class="logo-text">Écomobile</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#features">Fonctionnalités</a></li>
+                    <li><a href="#verification">Sécurité</a></li>
+                    <li><a href="#pricing">Forfaits</a></li>
+                    <li><a href="#eco-driving">Éco-conduite</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Sécurité et Sérieux</h1>
+            <p>La première plateforme de mobilité scolaire qui garantit la sécurité des enfants grâce à une vérification rigoureuse de tous les parents</p>
+            <a href="#" class="btn">Créer un compte</a>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Une application complète pour les parents</h2>
+                <p>Écomobile rassemble tous les services dont vous avez besoin pour concilier vie de famille et vie professionnelle</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>Covoiturage intelligent</h3>
+                    <p>Notre GPS calcule automatiquement les trajets les plus optimisés pour gagner du temps</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Agenda connecté</h3>
+                    <p>Synchronisez vos disponibilités et besoins avec les autres parents</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurité maximale</h3>
+                    <p>Vérification rigoureuse de tous les parents pour une tranquillité d'esprit</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Verification Process -->
+    <section class="verification" id="verification">
+        <div class="container">
+            <div class="section-title">
+                <h2>Processus de vérification rigoureux</h2>
+                <p>La sécurité de vos enfants est notre priorité absolue</p>
+            </div>
+            
+            <div class="verification-steps">
+                <div class="verification-step">
+                    <div class="step-number">1</div>
+                    <h3>Pièce d'identité</h3>
+                    <p>Vérification de la carte d'identité recto-verso</p>
+                </div>
+                
+                <div class="verification-step">
+                    <div class="step-number">2</div>
+                    <h3>Permis de conduire</h3>
+                    <p>Validation du permis de conduire recto-verso</p>
+                </div>
+                
+                <div class="verification-step">
+                    <div class="step-number">3</div>
+                    <h3>Assurance véhicule</h3>
+                    <p>Certificat d'assurance valide requis</p>
+                </div>
+                
+                <div class="verification-step">
+                    <div class="step-number">4</div>
+                    <h3>Vérification approfondie</h3>
+                    <p>Contrôle des antécédents pour maximum de sécurité</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choisissez le forfait qui vous correspond</h2>
+                <p>Quel que soit votre mode de vie, trouvez la formule adaptée à vos besoins</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Forfait Conducteur</h3>
+                        <div class="price">Gratuit</div>
+                        <p>Pour les parents disponibles</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Minimum 2 enfants supplémentaires</li>
+                            <li><i class="fas fa-check-circle"></i> Accès à la communauté</li>
+                            <li><i class="fas fa-check-circle"></i> Service de messagerie</li>
+                            <li><i class="fas fa-check-circle"></i> Système de notation</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#" class="btn">Choisir cette offre</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Forfait Essentiel</h3>
+                        <div class="price">10€<span>/mois</span></div>
+                        <p>Équilibre entre don et recevoir</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> 70% de trajets à effectuer</li>
+                            <li><i class="fas fa-check-circle"></i> Minimum 2 enfants supplémentaires</li>
+                            <li><i class="fas fa-check-circle"></i> 30% de services reçus</li>
+                            <li><i class="fas fa-check-circle"></i> Agenda connecté</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#" class="btn">Choisir cette offre</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Forfait Équilibre</h3>
+                        <div class="price">30€<span>/mois</span></div>
+                        <p>Donnez et recevez à parts égales</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Échange 50-50 de services</li>
+                            <li><i class="fas fa-check-circle"></i> Trajets matin/soir partagés</li>
+                            <li><i class="fas fa-check-circle"></i> Garde d'enfants mutualisée</li>
+                            <li><i class="fas fa-check-circle"></i> GPS intelligent</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#" class="btn">Choisir cette offre</a>
+                    </div>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3>Forfait Sérénité</h3>
+                        <div class="price">70€<span>/mois</span></div>
+                        <p>Pour une tranquillité totale</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Service complet trajets matin/soir</li>
+                            <li><i class="fas fa-check-circle"></i> 8h de garde d'enfants incluses</li>
+                            <li><i class="fas fa-check-circle"></i> Priorité sur les réservations</li>
+                            <li><i class="fas fa-check-circle"></i> Support prioritaire</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-button">
+                        <a href="#" class="btn">Choisir cette offre</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Driving Section -->
+    <section class="eco-driving" id="eco-driving">
+        <div class="container">
+            <div class="section-title">
+                <h2>Formation à l'éco-conduite obligatoire</h2>
+                <p>Tous nos adhérents doivent suivre cette formation pour garantir sécurité et respect de l'environnement</p>
+            </div>
+            
+            <div class="eco-grid">
+                <div class="eco-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Réduisez votre consommation</h3>
+                    <p>Apprenez les techniques pour réduire jusqu'à 15% votre consommation de carburant</p>
+                </div>
+                
+                <div class="eco-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Conduite sécuritaire</h3>
+                    <p>Anticipez les dangers et adoptez une conduite préventive pour la sécurité de tous</p>
+                </div>
+                
+                <div class="eco-card">
+                    <i class="fas fa-hand-holding-heart"></i>
+                    <h3>Respect de l'environnement</h3>
+                    <p>Diminuez votre empreinte carbone et participez à un avenir plus durable</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="#eco-modal" class="btn">Lire le guide complet d'éco-conduite</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- QR Code Section -->
+    <section class="qr-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Suivez-nous sur Instagram</h2>
+                <p>Restez connecté avec notre communauté et découvrez nos actualités</p>
+            </div>
+            
+            <div class="qr-container">
+                <div class="qr-code">
+                    <!-- Remplacez par votre vrai QR code -->
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://www.instagram.com/ecomobile_fr" alt="QR Code Instagram Écomobile">
+                    <p>Scannez pour nous suivre</p>
+                </div>
+                
+                <div class="qr-info">
+                    <h3>Rejoignez la communauté Écomobile</h3>
+                    <p>Suivez-nous sur Instagram pour :</p>
+                    <ul>
+                        <li><i class="fas fa-check"></i> Conseils quotidiens</li>
+                        <li><i class="fas fa-check"></i> Témoignages de parents</li>
+                        <li><i class="fas fa-check"></i> Actualités de l'application</li>
+                        <li><i class="fas fa-check"></i> Événements communautaires</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Features -->
+    <section class="app-features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Fonctionnalités intelligentes</h2>
+                <p>Découvrez comment Écomobile simplifie votre quotidien</p>
+            </div>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <i class="fas fa-bell"></i>
+                    <div>
+                        <h3>Alertes et notifications</h3>
+                        <p>Alarme 1 heure avant chaque départ et notification lorsque le conducteur est en route</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h3>Suivi en temps réel</h3>
+                        <p>Les parents peuvent suivre le conducteur en direct pour plus de tranquillité</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <h3>Gestion des imprévus</h3>
+                        <p>En cas d'empêchement, alertez instantanément les parents concernés</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-star"></i>
+                    <div>
+                        <h3>Système de notation</h3>
+                        <p>Évaluez les autres parents pour maintenir une communauté de confiance</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item">
+                    <i class="fas fa-calendar-alt"></i>
+                    <div>
+                        <h3>Agenda intelligent</h3>
+                        <p>Planifiez facilement vos trajets et services de garde</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta">
+        <div class="container">
+            <h2>Prêt à rejoindre notre communauté sécurisée ?</h2>
+            <p>Rejoignez des milliers de parents qui font confiance à Écomobile pour la sécurité et le bien-être de leurs enfants</p>
+            <a href="#" class="btn">Commencer l'inscription</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Écomobile</h3>
+                    <p>La solution innovante pour la mobilité parentale sécurisée, dès aujourd'hui en France et demain à l'international.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Liens rapides</h3>
+                    <ul>
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#verification">Sécurité</a></li>
+                        <li><a href="#pricing">Forfaits</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> eco.mobile.com@gmail.com</li>
+                        <li><i class="fas fa-globe"></i> https://ecomobile-fr.github.io</li>
+                        <li><i class="fas fa-hand-holding-heart"></i> <a href="https://fr.ulule.com/ecomobile/">Soutenir sur Ulule</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Écomobile. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Eco Driving Modal (hidden by default) -->
+    <div id="eco-modal" style="display: none;">
+        <h2>Guide Complet d'Éco-conduite</h2>
+        <p>Contenu détaillé sur l'éco-conduite à venir...</p>
+    </div>
+</body>
+</html>
